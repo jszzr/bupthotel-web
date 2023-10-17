@@ -1,0 +1,27 @@
+@import 'tailwindcss/base';
+@import 'tailwindcss/components';
+@import 'tailwindcss/utilities';
+
+.container {
+  @apply p-5 bg-gray-200 flex flex-col items-center;
+}
+
+.title {
+  @apply text-center text-3xl font-semibold mb-4 text-gray-700;
+}
+
+.card {
+  @apply bg-white rounded-lg shadow-lg p-6 m-4;
+}
+
+.statistic {
+  @apply text-center text-xl font-medium text-gray-600;
+}
+
+.slider {
+  @apply my-4 w-full;
+}
+
+.buttonGroup {
+  @apply flex justify-between items-center mt-4;
+}
