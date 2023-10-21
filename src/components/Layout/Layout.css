@@ -1,0 +1,231 @@
+:root {
+    --header-height: 50px;
+    --sider-bgcolor: #f7f8fa;
+    --main-bgclolor: #f5f7fa;
+    --border-color: rgba(9, 30, 66, 0.1);
+    --menu-font-color: #202d40;
+}
+
+* {
+    font-family: MiSans, serif;
+    color: var(--menu-font-color);
+}
+
+/*加载中*/
+.admin-data-loading {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+}
+
+/* 顶部菜单栏 */
+.admin-header {
+    padding: 0 10px;
+    background: #fff;
+    height: var(--header-height);
+    line-height: var(--header-height);
+    box-shadow: 0 2px 5px var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    position: fixed;
+    z-index: 100;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+/* 标题栏左边 */
+.admin-header-left {
+    height: var(--header-height);
+    line-height: var(--header-height);
+}
+
+.admin-logo {
+    padding: 10px;
+    height: 50px;
+    user-select: none;
+}
+
+/* 标题栏右边 */
+.admin-header-right {
+    height: var(--header-height);
+    line-height: var(--header-height);
+    margin: 0 20px;
+}
+
+.admin-avatar {
+    height: var(--header-height);
+    width: var(--header-height);
+    padding: 10px;
+}
+
+.admin-avatar img {
+    border-radius: 100%;
+}
+
+/* 下拉箭头 */
+.admin-dropup-icon::after {
+    transform: rotate(-45deg) translateX(-2.5px);
+    position: absolute;
+    width: 6px;
+    height: 1.5px;
+    background-color: currentcolor;
+    border-radius: 2px;
+    content: '';
+}
+
+.admin-dropup-icon::before {
+    transform: rotate(45deg) translateX(2.5px);
+    position: absolute;
+    width: 6px;
+    height: 1.5px;
+    background-color: currentcolor;
+    border-radius: 2px;
+    content: '';
+}
+
+/*展开收起搜索框图标*/
+.admin-dropup-search {
+    position: relative;
+    top: 12px;
+    padding: 0 15px;
+}
+
+.admin-dropdown-search {
+    position: relative;
+    top: 17px;
+    padding: 0 15px;
+}
+
+/*下拉选项*/
+.admin-dropdown-select {
+    position: relative;
+    top: 1px;
+    padding: 0 10px;
+}
+
+.admin-dropdown-icon::after {
+    transform: rotate(45deg) translateX(-2.5px);
+    position: absolute;
+    width: 6px;
+    height: 1.5px;
+    background-color: currentcolor;
+    border-radius: 2px;
+    content: '';
+}
+
+.admin-dropdown-icon::before {
+    transform: rotate(-45deg) translateX(2.5px);
+    position: absolute;
+    width: 6px;
+    height: 1.5px;
+    background-color: currentcolor;
+    border-radius: 2px;
+    content: '';
+}
+
+/* 侧边菜单栏 */
+.admin-sider {
+    margin-top: var(--header-height);
+    background: var(--sider-bgcolor);
+    height: calc(100vh - var(--header-height));
+    grid-template-rows: 1fr;
+    overflow-y: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.admin-sider::-webkit-scrollbar {
+    width: 0 !important;
+}
+
+.admin-sider-menu {
+    padding: 15px 0;
+    background: var(--sider-bgcolor);
+}
+
+.admin-sider-menu span {
+    user-select: none;
+}
+
+.admin-sider-menu > .ant-menu-item:last-child {
+    margin-bottom: var(--header-height);
+}
+
+.ant-menu-sub.ant-menu-inline {
+    background: var(--sider-bgcolor);
+}
+
+/* 菜单收缩栏 */
+.ant-layout-sider-trigger {
+    height: var(--header-height);
+    line-height: var(--header-height);
+    background-color: var(--sider-bgcolor);
+    border-top: 1px solid var(--border-color);
+}
+
+/* 收缩后弹出一级菜单样式 */
+.ant-menu-inline-collapsed-tooltip .ant-tooltip-inner {
+    color: var(--menu-font-color);
+    background-color: #fff;
+}
+
+.ant-menu-inline-collapsed-tooltip .ant-tooltip-arrow-content {
+    --antd-arrow-background-color: linear-gradient(to right bottom, #fff, #fff);
+}
+
+.ant-layout-sider-trigger * {
+    color: #000;
+}
+
+/* 右边主体 */
+.admin-content {
+    background: #fff;
+    margin-top: var(--header-height);
+    border-left: 1px solid var(--border-color);
+}
+
+.admin-content-main {
+    padding: 20px;
+}
+
+/*主体 PageHeader*/
+.admin-ph-common {
+    padding: 20px;
+    border-bottom: 1px solid var(--border-color);
+    box-shadow: 0 2px 5px var(--border-color);
+}
+
+.admin-ph-title {
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.admin-ph-notice {
+    padding: 10px 20px;
+    background-color: rgba(0, 0, 0, 0.04);
+    border: 1px solid var(--border-color);
+}
+
+.admin-ph-notice * {
+    font-size: 12px;
+    color: rgba(0, 0, 0, 0.7) !important;
+    letter-spacing: 1px;
+    line-height: 20px;
+}
+
+.admin-ph-notice ol {
+    margin-bottom: 0;
+    padding-inline-start: 30px;
+}
+
+/*列表*/
+.admin-tb-header {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.admin-tb-header button {
+    margin-left: 10px;
+}

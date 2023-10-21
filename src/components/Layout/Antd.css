@@ -1,0 +1,217 @@
+:root {
+    --input-height: 28px;
+}
+
+/* 重写 antd 样式 */
+/* 菜单之间的间距调整 */
+.ant-menu-vertical .ant-menu-item,
+.ant-menu-vertical-left .ant-menu-item,
+.ant-menu-vertical-right .ant-menu-item,
+.ant-menu-inline .ant-menu-item,
+.ant-menu-vertical .ant-menu-submenu-title,
+.ant-menu-vertical-left .ant-menu-submenu-title,
+.ant-menu-vertical-right .ant-menu-submenu-title,
+.ant-menu-inline .ant-menu-submenu-title {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.ant-menu-vertical .ant-menu-item:not(:last-child),
+.ant-menu-vertical-left .ant-menu-item:not(:last-child),
+.ant-menu-vertical-right .ant-menu-item:not(:last-child),
+.ant-menu-inline .ant-menu-item:not(:last-child) {
+    margin-bottom: 0;
+}
+
+/* 选中子菜单背景 */
+.ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
+    background-color: #e3e8f0;
+}
+
+/* 将选中 border 改为左边 */
+.ant-menu-vertical .ant-menu-item::after,
+.ant-menu-vertical-left .ant-menu-item::after,
+.ant-menu-vertical-right .ant-menu-item::after,
+.ant-menu-inline .ant-menu-item::after {
+    border-right: none;
+}
+
+.ant-menu-vertical .ant-menu-item::before,
+.ant-menu-vertical-left .ant-menu-item::before,
+.ant-menu-vertical-right .ant-menu-item::before,
+.ant-menu-inline .ant-menu-item::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    border-left: 3px solid var(--menu-font-color);
+    transform: scaleY(0.0001);
+    opacity: 0;
+    transition: transform 0.15s cubic-bezier(0.215, 0.61, 0.355, 1),
+    opacity 0.15s cubic-bezier(0.215, 0.61, 0.355, 1);
+    content: '';
+}
+
+.ant-menu-inline .ant-menu-selected::before,
+.ant-menu-inline .ant-menu-item-selected::before {
+    transform: scaleY(1);
+    opacity: 1;
+    transition: transform 0.15s cubic-bezier(0.645, 0.045, 0.355, 1),
+    opacity 0.15s cubic-bezier(0.645, 0.045, 0.355, 1);
+}
+
+/* 展开菜单的图标颜色 */
+.ant-menu-light .ant-menu-item:hover,
+.ant-menu-light .ant-menu-item-active,
+.ant-menu-light .ant-menu:not(.ant-menu-inline) .ant-menu-submenu-open,
+.ant-menu-light .ant-menu-submenu-active,
+.ant-menu-light .ant-menu-submenu-title:hover,
+.ant-menu-submenu-selected,
+.ant-menu-submenu:hover > .ant-menu-submenu-title > .ant-menu-submenu-expand-icon,
+.ant-menu-submenu:hover > .ant-menu-submenu-title > .ant-menu-submenu-arrow {
+    color: var(--menu-font-color);
+}
+
+/* 菜单图标大小 */
+.ant-menu-item .ant-menu-item-icon,
+.ant-menu-submenu-title .ant-menu-item-icon,
+.ant-menu-item .anticon,
+.ant-menu-submenu-title .anticon {
+    min-width: 15px;
+    font-size: 15px;
+}
+
+.ant-menu.ant-menu-inline-collapsed > .ant-menu-item .ant-menu-item-icon,
+.ant-menu.ant-menu-inline-collapsed
+> .ant-menu-item-group
+> .ant-menu-item-group-list
+> .ant-menu-item
+.ant-menu-item-icon,
+.ant-menu.ant-menu-inline-collapsed
+> .ant-menu-item-group
+> .ant-menu-item-group-list
+> .ant-menu-submenu
+> .ant-menu-submenu-title
+.ant-menu-item-icon,
+.ant-menu.ant-menu-inline-collapsed > .ant-menu-submenu > .ant-menu-submenu-title .ant-menu-item-icon,
+.ant-menu.ant-menu-inline-collapsed > .ant-menu-item .anticon,
+.ant-menu.ant-menu-inline-collapsed > .ant-menu-item-group > .ant-menu-item-group-list > .ant-menu-item .anticon,
+.ant-menu.ant-menu-inline-collapsed
+> .ant-menu-item-group
+> .ant-menu-item-group-list
+> .ant-menu-submenu
+> .ant-menu-submenu-title
+.anticon,
+.ant-menu.ant-menu-inline-collapsed > .ant-menu-submenu > .ant-menu-submenu-title .anticon {
+    font-size: 18px;
+}
+
+/* 收起弹出菜单宽度 */
+.ant-menu-vertical.ant-menu-sub,
+.ant-menu-vertical-left.ant-menu-sub,
+.ant-menu-vertical-right.ant-menu-sub {
+    min-width: auto;
+}
+
+/* 边框 */
+.ant-menu-inline,
+.ant-menu-vertical,
+.ant-menu-vertical-left {
+    border-right: none;
+}
+
+.ant-statistic-title {
+    height: 30px;
+    line-height: 30px;
+    margin-bottom: 0;
+}
+
+.ant-statistic-content {
+    height: 30px;
+    line-height: 30px;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+/*输入框*/
+.ant-input {
+    padding: 3px 10px;
+    font-size: 12px;
+    line-height: 20px;
+    border-radius: 0;
+}
+
+.ant-form-item-label > label {
+    height: var(--input-height);
+}
+
+.ant-form-item-control-input {
+    min-height: var(--input-height);
+}
+
+.ant-form-item {
+    line-height: var(--input-height);
+    margin-bottom: 20px;
+}
+
+/*下拉输入框*/
+.ant-select:not(.ant-select-customize-input) .ant-select-selector {
+    border-radius: 0;
+    height: var(--input-height);
+    padding: 0 11px;
+}
+
+.ant-select-single:not(.ant-select-customize-input) .ant-select-selector .ant-select-selection-search-input {
+    height: var(--input-height);
+}
+
+.ant-select-single .ant-select-selector .ant-select-selection-item, .ant-select-single .ant-select-selector .ant-select-selection-placeholder {
+    line-height: var(--input-height);
+    font-size: 12px;
+}
+
+.ant-select-item {
+    min-height: 20px;
+    padding: 5px 10px;
+    font-size: 12px;
+    line-height: 20px;
+}
+
+/*按钮*/
+.ant-btn {
+    line-height: 26px;
+    height: 26px;
+    padding: 0 15px;
+    font-size: 13px;
+    border-radius: 0;
+}
+
+/*.ant-btn:active {*/
+/*    color: rgba(32, 44, 64);*/
+/*    border-color: rgba(32, 44, 64);*/
+/*}*/
+
+.ant-btn-primary {
+    border-color: rgba(32, 44, 64);
+    background-color: rgba(32, 44, 64);
+}
+
+.ant-btn-primary:hover, .ant-btn-primary:focus {
+    color: #fff;
+    border-color: rgba(32, 44, 64);
+    background: rgba(32, 44, 64);
+}
+
+.ant-btn-primary * {
+    color: #ffffff;
+}
+
+.admin-search-btn-group {
+    height: var(--input-height);
+    line-height: var(--input-height);
+    margin-bottom: 20px;
+}
+
+.admin-search-btn-group button {
+    margin-left: 10px;
+}

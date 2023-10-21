@@ -1,7 +1,7 @@
 import React from "react";
 import { Router, Route } from "wouter";
 import AdminPage from "../components/AdminPage/AdminPage";
-import UserPage from "../components/UserPage/AirConditionerControl";
+import UserPage from "../components/UserPage/SetUp/AirConditionerControl.jsx";
 
 
 

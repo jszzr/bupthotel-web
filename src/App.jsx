@@ -1,12 +1,13 @@
-import { useState } from 'react'
-import AppRoutes from './routers'
-import './App.css'
-import React from 'react'
+import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
+import RouteList from './routers/Router.jsx';
 
-function App() {
+const App = () => {
   return (
-    <AppRoutes />
-  )
-}
+      <BrowserRouter>
+        <RouteList />
+      </BrowserRouter>
+  );
+};
 
 export default App;
