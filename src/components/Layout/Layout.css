@@ -1,6 +1,6 @@
 :root {
     --header-height: 50px;
-    --sider-bgcolor: #f7f8fa;
+    --sider-bgcolor: #f2f4f8;
     --main-bgclolor: #f5f7fa;
     --border-color: rgba(9, 30, 66, 0.1);
     --menu-font-color: #202d40;
@@ -151,6 +151,23 @@
     margin-bottom: var(--header-height);
 }
 
+.admin-sider-content {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+.admin-sider-image {
+    flex-grow: 1; /* 让图片部分自适应剩余空间 */
+}
+
+.admin-sider-image img {
+    max-width: 100%;
+    max-height: 200%;
+    width: auto;
+    height: auto;
+}
+
 .ant-menu-sub.ant-menu-inline {
     background: var(--sider-bgcolor);
 }
@@ -166,11 +183,11 @@
 /* 收缩后弹出一级菜单样式 */
 .ant-menu-inline-collapsed-tooltip .ant-tooltip-inner {
     color: var(--menu-font-color);
-    background-color: #fff;
+    background-color: #f2f4f8;
 }
 
 .ant-menu-inline-collapsed-tooltip .ant-tooltip-arrow-content {
-    --antd-arrow-background-color: linear-gradient(to right bottom, #fff, #fff);
+    --antd-arrow-background-color: linear-gradient(to right bottom, #f2f4f8, #103e9a);
 }
 
 .ant-layout-sider-trigger * {

@@ -1,11 +1,26 @@
 import { useState } from 'react'
-import { Button, Card, Slider, Statistic, Row, Col, Typography, Divider } from 'antd'
-import { UpOutlined, DownOutlined } from '@ant-design/icons'
+import {Button, Card, Slider, Statistic, Row, Col, Divider, Typography,} from 'antd'
+import {UpOutlined, DownOutlined, PoweroffOutlined} from '@ant-design/icons'
 import acImage from '../../../images/ac.png'
 import PageHeader from "../../Common/Header.jsx";
+import '../../Layout/Antd.css';
 const { Title } = Typography
-
 function AirConditionerControl() {
+  const [loadings, setLoadings] = useState([]);
+  const enterLoading = (index) => {
+    setLoadings((prevLoadings) => {
+      const newLoadings = [...prevLoadings];
+      newLoadings[index] = true;
+      return newLoadings;
+    });
+    setTimeout(() => {
+      setLoadings((prevLoadings) => {
+        const newLoadings = [...prevLoadings];
+        newLoadings[index] = false;
+        return newLoadings;
+      });
+    }, 6000);
+  };
   const [desiredTemp, setDesiredTemp] = useState(24)
   const [fanSpeed, setFanSpeed] = useState(1)
   const [roomTemp, setRoomTemp] = useState(24)
@@ -98,6 +113,20 @@ function AirConditionerControl() {
                   </Button>
                 </Button.Group>
               </div>
+            </Card>
+          </Col>
+          <Col span={24}>
+            <Card>
+                <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '130px' }}> {/* 设置最小高度 */}
+                  <Button
+                      type="primary"
+                      icon={<PoweroffOutlined />}
+                      loading={loadings[1]}
+                      onClick={() => enterLoading(1)}
+                      >
+                    Turn On
+                  </Button>
+                 </div>
             </Card>
           </Col>
         </Row>

@@ -10,7 +10,7 @@ import './Antd.css';
 import './Layout.css';
 import { Outlet, useNavigate } from 'react-router';
 import { AdminDropdownIcon } from '../Common/Icon.jsx';
-import { DefaultAvatar, Logo } from '../../utils/Resource.jsx';
+import { DefaultAvatar, Logo, Logo_p} from '../../utils/Resource.jsx';
 const { Header, Sider, Content } = Layout;
 
 // 生成菜单结构
@@ -92,26 +92,32 @@ const CommonLayout = () => {
                         </Dropdown>
                     </div>
                 </Header>
-                <Layout className="admin-main">
+                <Layout className="admin-main" >
                     <Sider
                         width={220}
                         className="admin-sider"
+
                         collapsible
                         collapsed={collapsed}
-                        onCollapse={(value) => setCollapsed(value)}>
-                        <Menu
-                            className="admin-sider-menu"
-                            defaultSelectedKeys={['1']}
-                            defaultOpenKeys={['sub1']}
-                            mode="inline"
-                            items={menus}
-                            onClick={({ key }) => {
-                                console.log(key);
-                                navigate(key); // 路由跳转
-                            }}
-                        />
-                    </Sider>
-                    <Layout>
+                        onCollapse={(value) => setCollapsed(value)}
+                    >
+                        <div className="admin-sider-content">
+                            <Menu
+                                className="admin-sider-menu"
+                                defaultSelectedKeys={['1']}
+                                defaultOpenKeys={['sub1']}
+                                mode="inline"
+                                items={menus}
+                                onClick={({ key }) => {
+                                    console.log(key);
+                                    navigate(key); // 路由跳转
+                                }}
+                            />
+                            <div className="admin-sider-image">
+                                <img src={Logo_p} alt="Logo" />
+                            </div>
+                        </div>
+                    </Sider>                    <Layout>
                         <Content className="admin-content">
                             <Outlet />
                         </Content>
