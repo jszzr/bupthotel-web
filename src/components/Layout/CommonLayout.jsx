@@ -84,7 +84,7 @@ const CommonLayout = () => {
                                 items,
                             }}>
                             <a onClick={(e) => e.preventDefault()}>
-                                <Space>
+                                <   Space>
                                     <Avatar className="admin-avatar" src={DefaultAvatar} />
                                     <AdminDropdownIcon />
                                 </Space>

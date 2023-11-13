@@ -28,14 +28,18 @@ export const RouteData = [
                     {
                         path: 'WaitingList', // 等待详情
                         element: LazyLoad(
-                            React.lazy(() => import('/src/components/UserPage/WaitingList.jsx')),
+                            React.lazy(() => import('/src/components/UserPage/SetUp/WaitingList.jsx')),
                         ),
                     },
                     {
                         path: 'Fee', // 计费
-                        element: LazyLoad(React.lazy(() => import('/src/components/UserPage/Fee.jsx'))),
+                        element: LazyLoad(React.lazy(() => import('/src/components/UserPage/Fee/Fee.jsx'))),
                     },
                 ],
+            },
+            {
+                path: 'Pay', // 个人中心
+                element: LazyLoad(React.lazy(() => import('/src/components/UserPage/Fee/pay.jsx'))),
             },
             {
                 path: 'me', // 个人中心

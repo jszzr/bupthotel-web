@@ -5,11 +5,13 @@ import {
     ProCard,
 } from '@ant-design/pro-components';
 import MyTime from "../MyTime/MyTime.jsx";
-import {Progress} from "antd";
-
+import {Button, Progress} from "antd";
+import { useAirConditioner } from '../Context/AirConditionerContext';
+import {PoweroffOutlined} from "@ant-design/icons";
 
 // 仪表盘工作台
 const Dashboard = () => {
+    const { airConditionerSettings } = useAirConditioner();
     return (
         <>
             <DashboardHeader />
@@ -35,8 +37,19 @@ const Dashboard = () => {
                     </ProCard>
                 </ProCard>
                 <ProCard title= "空调状态" headerBordered>
-
-                    <div style={{ height: 360 }}>111</div>
+                    <div style={{ height: 360 }}>
+                        <h3>当前空调设置：</h3>
+                        <p>期望温度：{airConditionerSettings.desiredTemp}°C</p>
+                        <p>风速：{airConditionerSettings.fanSpeed}</p>
+                    </div>
+                    <Button type="primary" icon={<PoweroffOutlined />}
+                            style={{ float: 'left', margin: '50px 0px 10px 120px'}} size="large" href="/UserPage/SetUp">
+                        Turn On
+                    </Button>
+                    <Button type="primary" icon={<PoweroffOutlined />}
+                            style={{ float: 'right', margin: '50px 50px 100px 10px'}} size="large" href="/Pay">
+                        Turn Off
+                    </Button>
                 </ProCard>
             </ProCard>
         </>
