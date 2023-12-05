@@ -1,12 +1,70 @@
 import React from 'react';
-import {Navigate, useRoutes} from 'react-router';
+import {Navigate, Outlet, useRoutes} from 'react-router';
 import AdminLayout from '../components/layout/CommonLayout.jsx';
 import LazyLoad from './Lazy.jsx'; // 注释
-
-export const RouteData = [
+import MonitorLayout from "../components/Layout/MonitorLayout.jsx";
+import Monitor from "../components/AdminPage/Monitor.jsx";
+import {Route} from "wouter";
+export const RouteData  = [
     {
         path: '/', // 首页跳转;
         element: <Navigate to="/dashboard" />,
+
+    },
+    {
+        path: 'Login', // 工作台
+        element: LazyLoad(React.lazy(() => import('/src/components/Login/Login.jsx'))),
+    },
+    {
+        path: 'Register', // 工作台
+        element: LazyLoad(React.lazy(() => import('/src/components/Login/Register.jsx'))),
+    },
+    // {
+    //     path: 'AdminPage', // 用户中心
+    //     children: [
+    //         {
+    //             path: 'Monitor', // 开机
+    //             element: <MonitorLayout>
+    //                 <Outlet>
+    //                     <Route
+    //                         path="monitor"
+    //                         element={<LazyLoad>{() => <Monitor />}</LazyLoad>}
+    //                     />
+    //                 </Outlet>
+    //             </MonitorLayout>,
+    //         },
+    //     ],
+    // },
+    {
+        path: '/AdminPage', // 用户中心
+        element: <MonitorLayout />,
+        children: [
+            {
+                path: 'Monitor', // 开机
+                element: LazyLoad(React.lazy(() => import('/src/components/AdminPage/Monitor.jsx'))),
+            },
+            {
+                path: 'Front', // 开机
+                element: LazyLoad(React.lazy(() => import('/src/components/AdminPage/Front.jsx'))),
+            },
+            {
+                path: 'Bill_Detail', // 开机
+                element: LazyLoad(React.lazy(() => import('/src/components/AdminPage/Bill_Detail.jsx'))),
+            },
+            {
+                path: 'Bill_Cost', // 开机
+                element: LazyLoad(React.lazy(() => import('/src/components/AdminPage/Bill_Cost.jsx'))),
+            },
+            {
+                path: 'Daily_report', // 开机
+                element: LazyLoad(React.lazy(() => import('/src/components/AdminPage/Daily_report.jsx'))),
+            },
+            {
+                path: 'Weekly_report', // 开机
+                element: LazyLoad(React.lazy(() => import('/src/components/AdminPage/Weekly_report.jsx'))),
+            },
+
+        ],
     },
     {
         // 后台路由

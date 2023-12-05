@@ -1,7 +1,13 @@
 import React, { useState } from 'react';
-import {Button, Card, Col, Row, Slider, Statistic, Typography} from 'antd';
-import {DownOutlined, UpOutlined} from "@ant-design/icons";
-import {ProCard} from "@ant-design/pro-components";
+import {Button, Card, Col, Row, Slider, Space, Statistic, Typography} from 'antd';
+import {
+    AlipayCircleOutlined,
+    DownOutlined, LockOutlined,
+    TaobaoCircleOutlined,
+    UpOutlined, UserOutlined,
+    WeiboCircleOutlined
+} from "@ant-design/icons";
+import {LoginForm, ProCard, ProFormSelect, ProFormText} from "@ant-design/pro-components";
 const { Title } = Typography;
 
 
@@ -28,135 +34,70 @@ export default () => {
         3: '高风速',
     };
     return (
-        <ProCard
-            tabs={{
-                type: 'card',
-            }}
-        >
-            <ProCard.TabPane key="tab1" tab="制冷模式">
-                <Row>
-                    <Col span={8}>
-                        <Card>
-                            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '130px' }}>
-                                <Statistic
-                                    title="Room Temperature"
-                                    value={roomTemp}
-                                    suffix="°C"
-                                    style={{ textAlign: 'center' }}
-                                />
-                            </div>
-                        </Card>
-                    </Col>
-                    <Col span={8}>
-                        <Card>
-                            <div style={{ height: '100%' }}>
-                                <Title level={5}>Desired Temperature</Title>
-                                <Slider
-                                    min={16}
-                                    max={30}
-                                    onChange={setDesiredTemp}
-                                    value={desiredTemp}
-                                    marks={tmp_marks_cool}
-                                    defaultValue={desiredTemp}
-                                />
-                                <Button.Group>
-                                    <Button onClick={() => setDesiredTemp(desiredTemp - 1)}>
-                                        <DownOutlined />
-                                    </Button>
-                                    <Button onClick={() => setDesiredTemp(desiredTemp + 1)}>
-                                        <UpOutlined />
-                                    </Button>
-                                </Button.Group>
-                            </div>
-                        </Card>
-                    </Col>
-                    <Col span={8}>
-                        <Card>
-                            <div style={{ height: '100%' }}>
-                                <Title level={5}>Fan Speed</Title>
-                                <Slider
-                                    min={1}
-                                    max={3}
-                                    onChange={setFanSpeed}
-                                    value={fanSpeed}
-                                    marks={fan_marks}
-                                    defaultValue={2}
-                                />
-                                <Button.Group>
-                                    <Button onClick={() => setFanSpeed(fanSpeed - 1)}>
-                                        <DownOutlined />
-                                    </Button>
-                                    <Button onClick={() => setFanSpeed(fanSpeed + 1)}>
-                                        <UpOutlined />
-                                    </Button>
-                                </Button.Group>
-                            </div>
-                        </Card>
-                    </Col>
-                </Row>
-            </ProCard.TabPane>
-            <ProCard.TabPane key="tab2" tab="制热模式">
-                <Row>
-                    <Col span={8}>
-                        <Card>
-                            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', minHeight: '130px' }}>
-                                <Statistic
-                                    title="Room Temperature"
-                                    value={roomTemp}
-                                    suffix="°C"
-                                    style={{ textAlign: 'center' }}
-                                />
-                            </div>
-                        </Card>
-                    </Col>
-                    <Col span={8}>
-                        <Card>
-                            <div style={{ height: '100%' }}>
-                                <Title level={5}>Desired Temperature</Title>
-                                <Slider
-                                    min={24}
-                                    max={30}
-                                    onChange={setDesiredTemp}
-                                    value={28}
-                                    marks={tmp_marks_hot}
-                                    defaultValue={desiredTemp}
-                                />
-                                <Button.Group>
-                                    <Button onClick={() => setDesiredTemp(desiredTemp - 1)}>
-                                        <DownOutlined />
-                                    </Button>
-                                    <Button onClick={() => setDesiredTemp(desiredTemp + 1)}>
-                                        <UpOutlined />
-                                    </Button>
-                                </Button.Group>
-                            </div>
-                        </Card>
-                    </Col>
-                    <Col span={8}>
-                        <Card>
-                            <div style={{ height: '100%' }}>
-                                <Title level={5}>Fan Speed</Title>
-                                <Slider
-                                    min={1}
-                                    max={3}
-                                    onChange={setFanSpeed}
-                                    value={fanSpeed}
-                                    marks={fan_marks}
-                                    defaultValue={2}
-                                />
-                                <Button.Group>
-                                    <Button onClick={() => setFanSpeed(fanSpeed - 1)}>
-                                        <DownOutlined />
-                                    </Button>
-                                    <Button onClick={() => setFanSpeed(fanSpeed + 1)}>
-                                        <UpOutlined />
-                                    </Button>
-                                </Button.Group>
-                            </div>
-                        </Card>
-                    </Col>
-                </Row>
-            </ProCard.TabPane>
-        </ProCard>
+        <>
+            <LoginForm
+                title="BuptHotel"
+                subTitle="欢迎光临BuptHotel，我们将竭诚为您服务！"
+                actions={
+                    <Space>
+                        其他登录方式
+                        <AlipayCircleOutlined style={iconStyles} />
+                        <TaobaoCircleOutlined style={iconStyles} />
+                        <WeiboCircleOutlined style={iconStyles} />
+                    </Space>
+
+                }
+
+            >
+                <ProFormSelect
+                    name="RoomNumber"
+                    label="Select"
+                    valueEnum={{
+                        101: '101',
+                        102: '102',
+                        103: '103',
+                        201: '201',
+                        202: '202',
+                        203: '203',
+                        404: '404',
+                    }}
+                    placeholder="请选择您入住的房间"
+                    rules={[{ required: true, message: '请选择房间号!' }]}
+                />
+
+                <ProFormText
+                    name="PhoneNumber"
+                    fieldProps={{
+                        size: 'large',
+                        prefix: <UserOutlined className={'prefixIcon'} />,
+                    }}
+                    placeholder={'手机号'}
+                    rules={[
+                        {
+                            required: true,
+                            message: '请输入手机号!',
+                        },
+                        {
+                            pattern: /^1\d{10}$/,
+                            message: '手机号格式错误！',
+                        },
+                    ]}
+                />
+                <ProFormText.Password
+                    name="password"
+                    fieldProps={{
+                        size: 'large',
+                        prefix: <LockOutlined className={'prefixIcon'} />,
+                    }}
+                    placeholder={'密码'}
+                    rules={[
+                        {
+                            required: true,
+                            message: '请输入密码！',
+                        },
+                    ]}
+                />
+            </LoginForm>
+        </>
     );
 };

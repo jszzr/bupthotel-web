@@ -2,6 +2,8 @@ import React from 'react';
 import {Avatar, Statistic} from 'antd';
 import {DefaultAvatar} from '../../utils/Resource.jsx'; // 工作台 Header
 
+
+import { useRoomContext } from '../Context/RoomContext.jsx';
 // 问候语
 function generateHelloWord(name) {
     let hour = new Date().getHours();
@@ -27,6 +29,12 @@ function generateHelloWord(name) {
 
 // 工作台 Header
 const DashboardHeader = () => {
+
+    // 使用自定义 hook 获取房间上下文
+    const { roomNumber } = useRoomContext();
+
+    // 获取已选的房间号
+    const selectedRoomNumber = roomNumber;
     // 问候语
     let hello = generateHelloWord('吴彦祖');
 
@@ -46,7 +54,7 @@ const DashboardHeader = () => {
                     <div className="admin-ph-info">
                         <div className="admin-ph-welcome">{hello}</div>
                         <div className="admin-ph-desc">
-                            波普特酒店 | 404房间
+                            {selectedRoomNumber ? `波普特酒店 | ${selectedRoomNumber}房间` : '波普特酒店'}
                         </div>
                     </div>
                 </div>

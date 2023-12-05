@@ -36,6 +36,25 @@ const menus = [
     getItem('获取帮助', '/help', <FileProtectOutlined />),
 ];
 
+const handleLogout = () => {
+    var myHeaders = new Headers();
+    myHeaders.append("User-Agent", "Apifox/1.0.0 (https://apifox.com)");
+
+    var requestOptions = {
+      method: 'GET',
+      headers: myHeaders,
+      redirect: 'follow'
+    };
+
+    fetch("/logout", requestOptions)
+      .then(response => response.text())
+      .then(result => {
+        console.log(result);
+        navigate('/login'); // 跳转到登录页面
+      })
+      .catch(error => console.log('error', error));
+  };
+
 // 下拉菜单，只能使用这个变量名称，不然会报错
 const items = [
     {
@@ -49,16 +68,7 @@ const items = [
     {
         key: '2',
         label: (
-            <a target="_blank" rel="noopener noreferrer" href="">
-                禁用按钮
-            </a>
-        ),
-        disabled: true,
-    },
-    {
-        key: '3',
-        label: (
-            <a target="_blank" rel="noopener noreferrer" href="">
+            <a onClick={handleLogout}  href="/login">
                 注销登录
             </a>
         ),
@@ -71,8 +81,11 @@ const CommonLayout = () => {
     const navigate = useNavigate();
     // 菜单状态
     const [collapsed, setCollapsed] = useState(false);
+
+
     return (
         <>
+        
             <Layout>
                 <Header className="admin-header">
                     <div className="admin-header-left">
