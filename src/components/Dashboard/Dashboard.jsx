@@ -10,7 +10,7 @@ import { useAirConditioner } from '../Context/AirConditionerContext';
 import {PoweroffOutlined} from "@ant-design/icons";
 import {useRoomContext} from "../Context/RoomContext.jsx";
 import {useNavigate} from "react-router";
-
+import { useLocation } from 'react-router-dom';
 
 
 
@@ -18,7 +18,10 @@ import {useNavigate} from "react-router";
 const Dashboard = () => {
     // const { airConditionerSettings } = useAirConditioner();
     const [airConditionerSettings, setAirConditionerSettings] = useState({});
-    const { roomNumber } = useRoomContext();
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const initialRoomNumber = queryParams.get('roomNumber');
+    const [roomNumber, setRoomNumber] = useState(initialRoomNumber);
     const navigate = useNavigate();
 
     const handleTurnOn = () => {
@@ -34,11 +37,20 @@ const Dashboard = () => {
         const storedRoomNumber = localStorage.getItem('roomNumber');
         const currentRoomNumber = storedRoomNumber || roomNumber;
         localStorage.setItem('roomNumber', currentRoomNumber);
-        fetch(`http://10.129.34.22:8080/get_device_status?device_id=${roomNumber}`)
-          .then(response => response.json())
-          .then(data => setAirConditionerSettings(data))
-          .catch(error => console.error('Error fetching data:', error));
-      }, [roomNumber]); // 添加房间号到依赖数组中
+
+        const interval = setInterval(() => {
+            
+            // fetch(`http://127.0.0.1:4523/m1/3693748-0-default/get_device_status?device_id=${currentRoomNumber}`)
+            fetch(`http://10.129.34.22:8080/get_device_status?device_id=${currentRoomNumber}`)
+                .then(response => response.json())
+                .then(data => setAirConditionerSettings(data))
+                .catch(error => console.error('Error fetching data:', error));
+        }, 3000);
+
+        return () => {
+            clearInterval(interval);
+        };
+    }, [roomNumber]); // 添加房间号到依赖数组中
 
 
 

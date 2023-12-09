@@ -22,6 +22,7 @@ import{useRoomContext} from "../Context/RoomContext.jsx";
 
 
 export default function Login() {
+    
     const navigate = useNavigate();
     const {roomNumber, setRoomNumber,} = useRoomContext();
     const onFinish = (values) => {
@@ -40,6 +41,8 @@ export default function Login() {
         };
 
         // fetch("/login", requestOptions)
+        
+        // fetch('http://127.0.0.1:4523/m1/3693748-0-default/login', requestOptions)
         fetch('http://10.129.34.22:8080/login', requestOptions)
             .then((response) => response.json())
             .then((result) => {
@@ -55,7 +58,9 @@ export default function Login() {
                     } else if (values.RoomNumber === '256') {
                         navigate("/AdminPage/Front"); // Redirect to /front for front
                     } else {
-                        navigate("/dashboard", { state: { roomNumber } }); // Redirect to /dashboard for other room numbers
+                        navigate(`/dashboard?roomNumber=${values.RoomNumber}`);
+                        
+                        // navigate("/dashboard", { state: { roomNumber } }); // Redirect to /dashboard for other room numbers
                     }
                 } else {
                     // Login failed
