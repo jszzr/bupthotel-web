@@ -33,12 +33,12 @@ const Dashboard = () => {
     useEffect(() => {
         const storedRoomNumber = localStorage.getItem('roomNumber');
         const currentRoomNumber = storedRoomNumber || roomNumber;
-        localStorage.setItem('roomNumber', currentRoomNumber);
-        fetch(`http://10.129.34.22:8080/get_device_status?device_id=${roomNumber}`)
-          .then(response => response.json())
-          .then(data => setAirConditionerSettings(data))
-          .catch(error => console.error('Error fetching data:', error));
-      }, [roomNumber]); // 添加房间号到依赖数组中
+        localStorage.setItem('roomNumber', currentRoomNumber);}, [roomNumber]);
+    //     fetch(`http://10.129.34.22:8080/get_device_status?device_id=${roomNumber}`)
+    //       .then(response => response.json())
+    //       .then(data => setAirConditionerSettings(data))
+    //       .catch(error => console.error('Error fetching data:', error));
+    //   }, [roomNumber]); // 添加房间号到依赖数组中
 
 
 

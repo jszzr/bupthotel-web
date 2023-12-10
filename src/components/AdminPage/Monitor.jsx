@@ -261,11 +261,11 @@ const RoomMonitor = () => {
                     redirect: 'follow',
                 };
 
-                const response = await fetch('http://10.129.34.22:8080/get_all_device_status', requestOptions);
-                console.log(response)
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
+                // const response = await fetch('http://10.129.34.22:8080/get_all_device_status', requestOptions);
+                // console.log(response)
+                // if (!response.ok) {
+                //     throw new Error('Network response was not ok');
+                // }
 
                 // Parse the response using the toResponse conversion function
                 const result = await response.json();

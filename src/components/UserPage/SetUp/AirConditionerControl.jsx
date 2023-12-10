@@ -134,8 +134,8 @@ function AirConditionerControl() {
     // sendRequest("set_speed", { "speed": value });
   };
   const [roomTemp, setRoomTemp] = useState(20.0);  // 环境温度
-  const [desiredTemp, setDesiredTemp] = useState(24);  // 目标温度
-  const [fanSpeed, setFanSpeed] = useState('low');  // 风速
+  const [desiredTemp, setDesiredTemp] = useState(22.0);  // 目标温度
+  const [fanSpeed, setFanSpeed] = useState('mid');  // 风速
 
   const tmp_marks_cool = {
     16: '16°C',
