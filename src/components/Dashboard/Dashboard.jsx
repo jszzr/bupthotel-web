@@ -10,7 +10,8 @@ import { useAirConditioner } from '../Context/AirConditionerContext';
 import {PoweroffOutlined} from "@ant-design/icons";
 import {useRoomContext} from "../Context/RoomContext.jsx";
 import {useNavigate} from "react-router";
-
+import { useLocation } from 'react-router-dom';
+import { API_URL } from '../../constants';
 
 
 
@@ -18,7 +19,10 @@ import {useNavigate} from "react-router";
 const Dashboard = () => {
     // const { airConditionerSettings } = useAirConditioner();
     const [airConditionerSettings, setAirConditionerSettings] = useState({});
-    const { roomNumber } = useRoomContext();
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const initialRoomNumber = queryParams.get('roomNumber');
+    const [roomNumber, setRoomNumber] = useState(initialRoomNumber);
     const navigate = useNavigate();
 
     const handleTurnOn = () => {
@@ -33,12 +37,21 @@ const Dashboard = () => {
     useEffect(() => {
         const storedRoomNumber = localStorage.getItem('roomNumber');
         const currentRoomNumber = storedRoomNumber || roomNumber;
-        localStorage.setItem('roomNumber', currentRoomNumber);}, [roomNumber]);
-    //     fetch(`http://10.129.34.22:8080/get_device_status?device_id=${roomNumber}`)
-    //       .then(response => response.json())
-    //       .then(data => setAirConditionerSettings(data))
-    //       .catch(error => console.error('Error fetching data:', error));
-    //   }, [roomNumber]); // 添加房间号到依赖数组中
+        localStorage.setItem('roomNumber', currentRoomNumber);
+
+        const interval = setInterval(() => {
+            
+            // fetch(`http://127.0.0.1:4523/m1/3693748-0-default/get_device_status?device_id=${currentRoomNumber}`)
+            fetch(`${API_URL}/get_device_status?device_id=${roomNumber}`)
+                .then(response => response.json())
+                .then(data => setAirConditionerSettings(data))
+                .catch(error => console.error('Error fetching data:', error));
+        }, 3000);
+
+        return () => {
+            clearInterval(interval);
+        };
+    }, [roomNumber]); // 添加房间号到依赖数组中
 
 
 
@@ -71,9 +84,9 @@ const Dashboard = () => {
                     <div style={{ height: 360 }}>
                         <h3>当前空调设置：</h3>
                         <p>期望温度：{airConditionerSettings.target_temperature}°C</p>
-                        <p>风速：{airConditionerSettings.fanSpeed ? '开启' : '关闭'}</p>
+                        <p>风速：{airConditionerSettings.speed ? '开启' : '关闭'}</p>
                         <p>环境温度：{airConditionerSettings.env_temperature}°C</p>
-                        <p>工作模式：{airConditionerSettings.mode ? '制冷模式' : '制热模式'}</p>
+                        <p>工作模式：{airConditionerSettings.mode ? '制热模式' : '制冷模式'}</p>
                     </div>
                     <Button type="primary" icon={<PoweroffOutlined />}
                             style={{ float: 'left', margin: '50px 0px 10px 120px'}} size="large" onClick={handleTurnOn}>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import {Button, Card, Slider, Statistic, Row, Col, Divider, Typography, InputNumber} from 'antd';
+import { message } from 'antd';
 import { UpOutlined, DownOutlined, PoweroffOutlined } from '@ant-design/icons';
 import acImage from '../../../images/ac.png';
 import PageHeader from "../../Common/Header.jsx";
@@ -7,7 +8,9 @@ import { useAirConditioner } from '../../Context/AirConditionerContext.jsx';
 import {ProCard} from "@ant-design/pro-components";
 import { Select } from 'antd';
 import { useLocation } from 'react-router-dom';
+import {useNavigate} from "react-router";
 const { Title } = Typography;
+import { API_URL } from '../../../constants';
 
 
 function AirConditionerControl() {
@@ -18,7 +21,7 @@ function AirConditionerControl() {
   const queryParams = new URLSearchParams(location.search);
   const initialRoomNumber = queryParams.get('roomNumber');
   const [roomNumber, setRoomNumber] = useState(initialRoomNumber);
-
+  const navigate = useNavigate();
   useEffect(() => {
     setRoomNumber(initialRoomNumber);
   }, [initialRoomNumber]);
@@ -49,10 +52,11 @@ function AirConditionerControl() {
       redirect: 'follow'
     };
 
-    fetch(`http://10.129.34.22:8080/remote_control?device_id=${roomNumber}`, requestOptions)
+     fetch(`${API_URL}/remote_control?device_id=${roomNumber}`, requestOptions)
+    // fetch(`http://127.0.0.1:4523/m1/3693748-0-default/admin_control`, requestOptions)
       .then(response => response.json())
       .then(result => {
-        setApiResponse(result); // 更新响应
+        
         console.log(result);
 
         // 根据返回的status值进行处理
@@ -60,9 +64,12 @@ function AirConditionerControl() {
           // 处理成功的情况
           console.log('请求成功');
           message.success('请求成功'); 
+          
+          navigate(`/dashboard?roomNumber=${roomNumber}`);
+
         } else if (result.status === "failed!") {
           // 处理失败的情况
-          alert("请求失败，请重试！"); // 显示错误消息弹窗
+          message.error('请求失败，请重试'); // 显示错误消息弹窗
         }
       })
       .catch(error => console.log('error', error));
@@ -169,7 +176,7 @@ function AirConditionerControl() {
           '用电高峰期，您的开机请求可能无法立即满足，请您耐心等待',
     },
   ];
-  const [apiResponse, setApiResponse] = useState('');
+  
 
 
     // 构建请求体
@@ -185,7 +192,7 @@ function AirConditionerControl() {
       <div>
         <PageHeader title={title} notices={notices} />
         <div>
-          <div>API Response: {apiResponse}</div>
+          
           <img src={acImage} alt="Air Conditioner" style={{ width: '100%', maxWidth: '100%', height: 'auto' }} />
           <Row gutter={16} style={{ padding: '20px', backgroundColor: '#f0f2f5' }}>
             <Col span={24}>

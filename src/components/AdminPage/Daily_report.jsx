@@ -27,7 +27,7 @@ const Daily_report = () => {
                 };
 
                 const response = await fetch(
-                    'http://127.0.0.1:4523/m1/3691356-0-default/get_daily_report',
+                    `${API_URL}/get_daily_report`,
                     requestOptions
                 );
 

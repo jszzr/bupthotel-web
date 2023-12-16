@@ -28,7 +28,7 @@ const WeeklyReport = () => {
                 };
 
                 const response = await fetch(
-                    'http://127.0.0.1:4523/m1/3691356-0-default/get_range_report',
+                    `${API_URL}/get_range_report`,
                     requestOptions
                 );
 

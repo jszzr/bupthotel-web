@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Badge, Descriptions } from 'antd';
 import {useGuestNameContext} from "../Context/GuestNameContext.jsx";
+import { API_URL } from '../../constants';
 
 const Bill_Cost = () => {
     const [data, setData] = useState(null);
@@ -24,7 +25,7 @@ const Bill_Cost = () => {
                 });
 
                 const response = await fetch(
-                    `http://10.129.34.22:8080/bill_cost?${queryParams.toString()}`,
+                    `${API_URL}/bill_cost?${queryParams.toString()}`,
                     requestOptions
                 );
 

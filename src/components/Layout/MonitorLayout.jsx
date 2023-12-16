@@ -7,6 +7,7 @@ import { Outlet, useNavigate } from 'react-router';
 import { AdminDropdownIcon } from '../Common/Icon.jsx';
 import { DefaultAvatar, Logo, Logo_p} from '../../utils/Resource.jsx';
 const { Header, Sider, Content } = Layout;
+import { API_URL } from '../../constants';
 
 // 生成菜单结构
 

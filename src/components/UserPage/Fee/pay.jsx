@@ -3,6 +3,7 @@ import React from 'react';
 import {QRCode, Popover, Typography, Button} from 'antd';
 import {Logo_p} from '../../../utils/Resource.jsx';
 import PageHeader from "../../Common/Header.jsx";
+import { API_URL } from '../../constants';
 
 const { Title } = Typography
 

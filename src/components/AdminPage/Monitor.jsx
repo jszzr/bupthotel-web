@@ -4,6 +4,7 @@ import PageHeader from "../Common/Header.jsx";
 import {Button, Card, Col, InputNumber, Row, Statistic, Switch, Typography} from "antd";
 import { Slider ,DatePicker, Space} from 'antd';
 import {DownOutlined, PoweroffOutlined, UpOutlined} from "@ant-design/icons";
+import { API_URL } from '../../constants';
 
 const onAfterChange = (value) => {
     console.log('onAfterChange: ', value);
@@ -101,7 +102,7 @@ const RoomMonitor = () => {
             redirect: 'follow',
           };
       
-          const responseMode = await fetch('http://10.129.34.22:8080/admin_control', requestOptionsMode);
+          const responseMode = await fetch(`${API_URL}/admin_control`, requestOptionsMode);
       
           if (!responseMode.ok) {
             throw new Error('Network response was not ok');
@@ -133,7 +134,7 @@ const RoomMonitor = () => {
             redirect: 'follow',
           };
       
-          const responseValidRange = await fetch('http://10.129.34.22:8080/admin_control', requestOptionsValidRange);
+          const responseValidRange = await fetch(`${API_URL}/admin_control`, requestOptionsValidRange);
           console.log(responseValidRange);
           if (!responseValidRange.ok) {
             throw new Error('Network response was not ok');
@@ -165,7 +166,7 @@ const RoomMonitor = () => {
                 redirect: 'follow',
             };
 
-            const responseSetRate = await fetch('http://10.129.34.22:8080/admin_control', requestOptionsSetRate);
+            const responseSetRate = await fetch(`${API_URL}/admin_control`, requestOptionsSetRate);
 
             if (!responseSetRate.ok) {
                 throw new Error('Network response was not ok');
@@ -210,7 +211,7 @@ const RoomMonitor = () => {
                 redirect: 'follow',
             };
 
-            const response = await fetch('http://10.129.34.22:8080/admin_control', requestOptions);
+            const response = await fetch(`${API_URL}/admin_control`, requestOptions);
             if (response.status === 'success!') {
                 message.success('Checkin 成功！');
             } else {

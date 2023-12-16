@@ -9,6 +9,7 @@ const valueEnum = {
     1: 'online',
     2: 'error',
 };
+import { API_URL } from '../../constants';
 
 const tableListDataSource = [];
 

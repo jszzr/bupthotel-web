@@ -7,6 +7,7 @@ import {PoweroffOutlined} from "@ant-design/icons";
 import {useGuestNameContext} from "../Context/GuestNameContext.jsx";
 import { useNavigate } from 'react-router-dom';
 import {useRoomContext} from "../Context/RoomContext.jsx";
+import { API_URL } from '../../constants';
 
 const { Title } = Typography
 
@@ -49,7 +50,7 @@ const RoomMonitor = () => {
             redirect: 'follow'
         };
 
-        fetch(`http://10.129.34.22:8080/check_in?room_id=${roomNumber}`, requestOptions)
+        fetch(`${API_URL}/check_in?room_id=${roomNumber}`, requestOptions)
             .then(response => response.json())
             .then(data => {
                 if (data && data.status === 'success!') {
@@ -81,7 +82,7 @@ const RoomMonitor = () => {
             redirect: 'follow'
         };
 
-        fetch(`http://10.129.34.22:8080/check_out?room_id=${roomNumber}`, requestOptions)
+        fetch(`${API_URL}/check_out?room_id=${roomNumber}`, requestOptions)
             .then(response => response.json())
             .then(data => {
                 if (data && data.status === 'success!') {

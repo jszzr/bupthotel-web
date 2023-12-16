@@ -3,6 +3,8 @@ import {Button, Col, Divider, Progress, Row, Typography} from 'antd';
 import PageHeader from "../../Common/Header.jsx";
 import {ProCard} from "@ant-design/pro-components";
 import MyTime from "../../MyTime/MyTime.jsx";
+import { API_URL } from '../../constants';
+
 const { Title } = Typography
 const App = () => {
     const [percent, setPercent] = useState(0);
